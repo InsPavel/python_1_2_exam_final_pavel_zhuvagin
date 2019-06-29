@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница автора{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+        <div class="author text-center w-75">
+            <h3>{{ author.name }}</h3>
+                <div class="info_author">
+                    <p>{{ author.date_born }} - </p>
+                    {% if author.date_die == None%}
+                        <p>Ещё живой</p>
+                    {% else %}
+                        <p>{{ author.date_die }}</p>
+                    {% endif %}
+                </div>
+                    <img src="{{ author.photo.url }}" alt="">
+            <p>{{ author.biography }}</p>
+        </div>
+{% endblock %}

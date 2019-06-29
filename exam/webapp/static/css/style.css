@@ -3,6 +3,7 @@
 }
 .author_block {
     margin-bottom: 20px;
+    background: white;
 }
 
 .author_block img{
@@ -13,4 +14,24 @@
 .author_block p{
     display: inline-block;
     font-size: 18px;
+}
+
+.author_block a{
+    color: black;
+}
+
+/*Страница автора*/
+
+.author {
+    margin: 15px auto 10px auto;
+}
+
+
+.author p {
+    display: inline-block;
+    background: white;
+}
+
+.author img{
+    margin-bottom: 20px;
 }

@@ -7,8 +7,8 @@
     <h3>Список авторов</h3>
     {% for author in author_list %}
         <div class="author_block">
-            <img src="{{ author.photo.url }}" alt="">
-            <p>{{ author.name }}</p>
+            <a href="{% url 'author_detail' author.pk %}"><img src="{{ author.photo.url }}" alt=""></a>
+            <a href="{% url 'author_detail' author.pk %}"><p>{{ author.name }}</p></a>
         </div>
     {% endfor %}
 {% endblock %}

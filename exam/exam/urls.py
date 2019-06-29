@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from webapp.views import AuthorListView, AuthorCreateView, AuthorUpdateView
+from webapp.views import AuthorListView, AuthorCreateView, AuthorUpdateView, AuthorDetailView
 
 
 urlpatterns = [
@@ -25,4 +25,5 @@ urlpatterns = [
     path('author/', AuthorListView.as_view(), name='author_list'),
     path('author/create', AuthorCreateView.as_view(), name="author_create"),
     path('author/<int:pk>/update', AuthorUpdateView.as_view(), name="author_update"),
+    path('author/<int:pk>', AuthorDetailView.as_view(), name="author_detail"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
