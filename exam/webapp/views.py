@@ -87,6 +87,20 @@ class BookUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return reverse('webapp:book_detail', kwargs={'pk': self.object.pk})
 
 
+class BookDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Book
+    template_name = 'book_delete.html'
+    permission_required = 'webapp.book_delete'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.has_permission():
+            return redirect('webapp:author_list')
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('webapp:book_list')
+
+
 def book_download(request, pk):
     book = get_object_or_404(Book, pk=pk)
     file = book.file

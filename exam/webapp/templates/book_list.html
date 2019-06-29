@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Книги{% endblock %}
 {% block menu %}
 {% endblock %}
@@ -7,9 +7,14 @@
     <h3>Список книг</h3>
     <div class="book_block row">
     {% for book in book_list %}
-            <div class="col-3 card mr-5 p-0">
+            <div class="col-3 mr-5 p-0">
                 <div class="text-center book_image">
-                    <a href="{% url 'webapp:book_detail' book.pk %}"><img src="{{ book.image.url }}" alt="" class="w-100"></a>
+                    {% if book.image %}
+                        <a href="{% url 'webapp:book_detail' book.pk %}"><img src="{{ book.image.url }}" alt="" class="w-100"></a>
+
+                    {% else %}
+                        <a href="{% url 'webapp:book_detail' book.pk %}"><img src="{% static 'no_book.png' %}" alt="" class="w-100"></a>
+                    {% endif %}
                 </div>
             </div>
     {% endfor %}

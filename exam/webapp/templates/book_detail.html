@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Книга{% endblock %}
 {% block menu %}
 {% endblock %}
 {% block content %}
         <div class="author text-center w-75">
             <div class="author_change">
-                {% if user.is_authenticated %}
+                {% if user.has %}
                     <a href="{% url 'webapp:book_update' book.pk%}">Редактировать</a>
+                    <a href="{% url 'webapp:book_delete' book.pk%}">Удалить</a>
+                    <a href="{% url 'webapp:book_download' book.pk%}">Скачать книгу</a>
                 {% endif %}
             </div>
             <h3>{{ book.name }}</h3>
@@ -16,6 +18,8 @@
                 </div>
                 {% if book.image %}
                     <img src="{{ book.image.url }}" alt="" class="w-25">
+                {% else %}
+                    <img src="{% static 'no_book.png' %}" alt="">
                 {% endif %}
             <p>{{ book.description }}</p>
         </div>

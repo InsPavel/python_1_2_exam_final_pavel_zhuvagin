@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Страница автора{% endblock %}
 {% block menu %}
 {% endblock %}
@@ -27,7 +27,11 @@
         <div class="author_book row">
             {% for book in author.book.all %}
                 <div class="col-3">
+                {% if book.image %}
                     <img src="{{ book.image.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'no_book.png' %}" alt="">
+                {% endif %}
                 </div>
             {% endfor %}
         </div>
