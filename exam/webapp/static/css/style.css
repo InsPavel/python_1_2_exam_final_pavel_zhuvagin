@@ -23,6 +23,7 @@
 /*Страница автора*/
 
 .author {
+    position: relative;
     margin: 15px auto 10px auto;
 }
 
@@ -34,4 +35,9 @@
 
 .author img{
     margin-bottom: 20px;
+}
+
+.author_change{
+    position: absolute;
+    right: 0;
 }

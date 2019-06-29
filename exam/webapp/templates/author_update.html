@@ -2,7 +2,7 @@
 {% block title %}Редактировать автора{% endblock %}
 {% block content %}
     <h1>Редактировать автора</h1>
-    <form action="{% url 'author_update' author.pk %}" method="post">
+    <form action="{% url 'webapp:author_update' author.pk %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn, btn-primary">Сохранить</button>
