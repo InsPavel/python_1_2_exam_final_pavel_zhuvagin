@@ -12,7 +12,11 @@
             </div>
             <h3>{{ author.name }}</h3>
                 <div class="info_author">
-                    <p>{{ author.date_born }} - </p>
+                    {% if author.date_born == None %}
+                        <p>Дата не известна - </p>
+                    {% else %}
+                        <p>{{ author.date_born }}</p>
+                    {% endif %}
                     {% if author.date_die == None %}
                         <p>Ещё живой</p>
                     {% else %}
@@ -21,6 +25,8 @@
                 </div>
                 {% if author.photo %}
                     <img src="{{ author.photo.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'nophoto.png' %}" alt="">
                 {% endif %}
             <p>{{ author.biography }}</p>
         </div>

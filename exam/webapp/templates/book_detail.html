@@ -15,6 +15,7 @@
             <h3>{{ book.name }}</h3>
                 <div class="info_book">
                     <p>{{ book.publication }} г. </p>
+                    <a href="{% url 'webapp:author_detail' book.author.pk %}"><p>{{ book.author }}  </p></a>
                 </div>
                 {% if book.image %}
                     <img src="{{ book.image.url }}" alt="" class="w-25">

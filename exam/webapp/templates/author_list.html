@@ -10,7 +10,7 @@
             {% if author.photo %}
                 <a href="{% url 'webapp:author_detail' author.pk %}"><img src="{{ author.photo.url }}" alt=""></a>
             {% else %}
-                <img src="{% static 'nophoto.png' %}" alt="">
+                <a href="{% url 'webapp:author_detail' author.pk %}"><img src="{% static 'nophoto.png' %}" alt=""></a>
             {% endif %}
             <a href="{% url 'webapp:author_detail' author.pk %}"><p>{{ author.name }}</p></a>
         </div>
