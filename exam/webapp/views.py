@@ -1,8 +1,9 @@
 from django.shortcuts import render, reverse, redirect
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 from webapp.models import Author
 from webapp.forms import AuthorForm, UpdateAuthorForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import get_object_or_404
 
 
 class AuthorListView(ListView):
@@ -22,7 +23,7 @@ class AuthorCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     permission_required = 'webapp.add_author'
 
     def get_success_url(self):
-        return reverse('author_detail', kwargs={'pk': self.object.pk})
+        return reverse('webapp:author_detail', kwargs={'pk': self.object.pk})
 
 
 class AuthorUpdateView(LoginRequiredMixin, UpdateView):
@@ -31,7 +32,12 @@ class AuthorUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'author_update.html'
     permission_required = 'webapp'
 
-    def get_success_url(self):
-        return reverse('author_detail', kwargs={'pk': self.object.pk})
+    def get_permission_required(self):
+        return None
 
+    def has_permission(self):
+        return self.request.user == self.get_object().author
+
+    def get_success_url(self):
+        return reverse('webapp:author_detail', kwargs={'pk': self.object.pk})
 

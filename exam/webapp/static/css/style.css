@@ -2,6 +2,7 @@
     font-family: "Tahoma", sans-serif;
 }
 .author_block {
+    position: relative;
     margin-bottom: 20px;
     background: white;
 }
@@ -23,7 +24,6 @@
 /*Страница автора*/
 
 .author {
-    position: relative;
     margin: 15px auto 10px auto;
 }
 
