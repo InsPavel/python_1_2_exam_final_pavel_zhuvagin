@@ -1,9 +1,13 @@
 *{
     font-family: "Tahoma", sans-serif;
 }
+.author_block {
+    margin-bottom: 20px;
+}
 
 .author_block img{
     width: 100px;
+    height: 150px;
 }
 
 .author_block p{
