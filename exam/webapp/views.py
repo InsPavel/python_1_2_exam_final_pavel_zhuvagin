@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from webapp.models import Author
-from webapp.forms import AuthorForm
+from webapp.forms import AuthorForm, UpdateAuthorForm
 from django.views.generic.base import TemplateView
 
 
@@ -15,6 +15,11 @@ class AuthorCreateView(CreateView):
     form_class = AuthorForm
     template_name = 'author_create.html'
 
-    # def get_success_url(self):
-    #     return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
+
+class AuthorUpdateView(UpdateView):
+    model = Author
+    form_class = UpdateAuthorForm
+    template_name = 'author_update.html'
+
+
 

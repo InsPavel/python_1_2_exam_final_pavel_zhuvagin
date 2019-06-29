@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from webapp.views import AuthorListView, AuthorCreateView
+from webapp.views import AuthorListView, AuthorCreateView, AuthorUpdateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('author/', AuthorListView.as_view(), name='author_list'),
     path('author/create', AuthorCreateView.as_view(), name="author_create"),
+    path('author/<int:pk>/update', AuthorUpdateView.as_view(), name="author_update"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
