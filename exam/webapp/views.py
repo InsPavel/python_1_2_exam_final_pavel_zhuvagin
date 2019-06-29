@@ -1,9 +1,8 @@
 from django.shortcuts import render, reverse, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
-from webapp.models import Author
+from webapp.models import Author, Book
 from webapp.forms import AuthorForm, UpdateAuthorForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import get_object_or_404
 
 
 class AuthorListView(ListView):
@@ -40,4 +39,9 @@ class AuthorUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('webapp:author_detail', kwargs={'pk': self.object.pk})
+
+    
+class BookListView(ListView):
+    model = Book
+    template_name = 'book_list.html'
 

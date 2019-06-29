@@ -15,11 +15,11 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=256, verbose_name='Название книги')
-    author = models.ForeignKey(Author, verbose_name='Автор', on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, verbose_name='Автор', related_name='book', on_delete=models.CASCADE)
     publication = models.TextField(max_length=10, verbose_name='Год издания')
     file = models.FileField(upload_to='book_file', blank=True, null=True, verbose_name="Файл с текстом")
     image = models.ImageField(upload_to='book_photo', blank=True, null=True, verbose_name="Обложка")
-    description = models.TextField(max_length=1000, blank=True, null=True,)
+    description = models.TextField(max_length=1000, blank=True, null=True, verbose_name="Описание")
 
     def __str__(self):
-        return f"{self.pk}. {self.name} - {self.author}"
+        return f"{self.pk}. {self.name}"

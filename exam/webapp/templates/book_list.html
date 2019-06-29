@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Книги{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <h3>Список книг</h3>
+    {% for book in book_list %}
+        <div class="book_block row">
+            <div class="col-3 card">
+                <div class="text-center">
+                    <img src="{{ book.image.url }}" alt="">
+                    <p>{{ book.name }}</p>
+                    <p>{{ book.publication }}</p>
+                </div>
+                <p>{{ book.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

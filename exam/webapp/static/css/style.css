@@ -4,7 +4,6 @@
 .author_block {
     position: relative;
     margin-bottom: 20px;
-    background: white;
 }
 
 .author_block img{
@@ -30,7 +29,6 @@
 
 .author p {
     display: inline-block;
-    background: white;
 }
 
 .author img{
@@ -41,3 +39,4 @@
     position: absolute;
     right: 0;
 }
+
