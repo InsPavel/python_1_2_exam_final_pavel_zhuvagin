@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 {% block title %}Авторы{% endblock %}
 {% block menu %}
 {% endblock %}
@@ -9,6 +9,8 @@
         <div class="author_block">
             {% if author.photo %}
                 <a href="{% url 'webapp:author_detail' author.pk %}"><img src="{{ author.photo.url }}" alt=""></a>
+            {% else %}
+                <img src="{% static 'nophoto.png' %}" alt="">
             {% endif %}
             <a href="{% url 'webapp:author_detail' author.pk %}"><p>{{ author.name }}</p></a>
         </div>

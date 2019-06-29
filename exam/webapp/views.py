@@ -54,3 +54,19 @@ class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('webapp:book_detail', kwargs={'pk': self.object.pk})
+
+
+class BookUpdateView(LoginRequiredMixin, UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book_update.html'
+    permission_required = 'webapp.book_update'
+
+    def get_permission_required(self):
+        return None
+
+    def has_permission(self):
+        return self.request.user == self.get_object().author
+
+    def get_success_url(self):
+        return reverse('webapp:book_detail', kwargs={'pk': self.object.pk})
