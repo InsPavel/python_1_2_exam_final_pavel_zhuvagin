@@ -2,7 +2,6 @@
     font-family: "Tahoma", sans-serif;
 }
 .author_block {
-    position: relative;
     margin-bottom: 20px;
 }
 
@@ -23,6 +22,7 @@
 /*Страница автора*/
 
 .author {
+    position: relative;
     margin: 15px auto 10px auto;
 }
 
@@ -38,5 +38,14 @@
 .author_change{
     position: absolute;
     right: 0;
+}
+
+.author_book img {
+    width: 200px;
+    height: 300px;
+}
+
+.book_image img {
+    height: 400px;
 }
 

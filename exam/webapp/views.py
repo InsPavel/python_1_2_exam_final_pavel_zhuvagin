@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 from webapp.models import Author, Book
-from webapp.forms import AuthorForm, UpdateAuthorForm
+from webapp.forms import AuthorForm, UpdateAuthorForm, BookForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
@@ -40,8 +40,17 @@ class AuthorUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('webapp:author_detail', kwargs={'pk': self.object.pk})
 
-    
+
 class BookListView(ListView):
     model = Book
     template_name = 'book_list.html'
 
+
+class BookCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book_create.html'
+    permission_required = 'webapp.add_book'
+
+    def get_success_url(self):
+        return reverse('webapp:book_detail', kwargs={'pk': self.object.pk})

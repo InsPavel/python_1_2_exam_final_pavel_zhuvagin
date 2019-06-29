@@ -24,9 +24,11 @@
                 {% endif %}
             <p>{{ author.biography }}</p>
         </div>
-        <div class="author_book">
+        <div class="author_book row">
             {% for book in author.book.all %}
-                <img src="{{ book.image.url }}" alt="">
+                <div class="col-3">
+                    <img src="{{ book.image.url }}" alt="">
+                </div>
             {% endfor %}
         </div>
 {% endblock %}

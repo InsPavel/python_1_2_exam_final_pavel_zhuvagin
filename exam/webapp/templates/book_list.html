@@ -5,16 +5,14 @@
 {% endblock %}
 {% block content %}
     <h3>Список книг</h3>
+    <div class="book_block row">
     {% for book in book_list %}
-        <div class="book_block row">
-            <div class="col-3 card">
-                <div class="text-center">
-                    <img src="{{ book.image.url }}" alt="">
-                    <p>{{ book.name }}</p>
-                    <p>{{ book.publication }}</p>
+            <div class="col-3 card mr-5 p-0">
+                <div class="text-center book_image">
+                    <img src="{{ book.image.url }}" alt="" class="w-100">
                 </div>
                 <p>{{ book.description }}</p>
             </div>
-        </div>
     {% endfor %}
+    </div>
 {% endblock %}
