@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-from webapp.views import ArticleListView
+from webapp.views import AuthorListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ArticleListView.as_view(), name='article_list'),
+    path('author/', AuthorListView.as_view(), name='author_list'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
