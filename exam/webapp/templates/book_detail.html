@@ -6,7 +6,7 @@
 {% block content %}
         <div class="author text-center w-75">
             <div class="author_change">
-                {% if user.has %}
+                {% if user.is_authenticated %}
                     <a href="{% url 'webapp:book_update' book.pk%}">Редактировать</a>
                     <a href="{% url 'webapp:book_delete' book.pk%}">Удалить</a>
                     <a href="{% url 'webapp:book_download' book.pk%}">Скачать книгу</a>
@@ -23,5 +23,7 @@
                     <img src="{% static 'no_book.png' %}" alt="">
                 {% endif %}
             <p>{{ book.description }}</p>
+            <a href="">Добавить книгу</a>
         </div>
+
 {% endblock %}

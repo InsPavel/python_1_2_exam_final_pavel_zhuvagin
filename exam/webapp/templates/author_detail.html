@@ -8,6 +8,7 @@
             <div class="author_change">
                 {% if user.is_authenticated %}
                     <a href="{% url 'webapp:author_update' author.pk%}">Редактировать</a>
+                    <a href="{% url 'webapp:author_delete' author.pk%}">Удалить</a>
                 {% endif %}
             </div>
             <h3>{{ author.name }}</h3>

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, reverse, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
-from webapp.models import Author, Book
+from webapp.models import Author, Book, BookShelf, User
 from webapp.forms import AuthorForm, UpdateAuthorForm, BookForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -101,6 +101,16 @@ class BookDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
         return reverse('webapp:book_list')
 
 
+class UserListView(ListView):
+    model = User
+    template_name = 'user_list.html'
+
+
+class UserDetailView(DetailView):
+    model = User
+    template_name = 'user_detail.html'
+
+
 def book_download(request, pk):
     book = get_object_or_404(Book, pk=pk)
     file = book.file
@@ -108,3 +118,10 @@ def book_download(request, pk):
     response = HttpResponse(file, content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename=%s' % file_name
     return response
+
+
+def soft_delete_author(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    author.is_deleted = True
+    author.save()
+    return redirect('webapp:author_list')

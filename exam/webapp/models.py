@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Author(models.Model):
@@ -23,3 +24,12 @@ class Book(models.Model):
 
     def __str__(self):
         return f"{self.pk}. {self.name}"
+
+
+class BookShelf(models.Model):
+    user = models.OneToOneField(User, related_name='user',  verbose_name='Пользователь', on_delete=models.CASCADE)
+    book = models.ManyToManyField('Book', related_name='book', verbose_name='Книги')
+
+    def __str__(self):
+        return f"{self.user} {self.user.pk}"
+

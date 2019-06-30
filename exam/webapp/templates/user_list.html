@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Список пользователей{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <h3>Список пользователей</h3>
+    {% for user in user_list %}
+        <div class="author_block">
+            <a href="{% url 'webapp:user_detail' user.pk %}">{{ user.first_name }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

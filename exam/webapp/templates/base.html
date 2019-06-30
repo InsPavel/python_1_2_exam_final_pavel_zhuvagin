@@ -36,6 +36,9 @@
                 <a href="{% url 'webapp:author_list' %}" class="nav-link">Список авторов</a>
             </li>
             <li class="nav-item">
+                <a href="{% url 'webapp:user_list' %}" class="nav-link">Список пользователей</a>
+            </li>
+            <li class="nav-item">
                 <a href="{% url 'webapp:book_list' %}" class="nav-link">Список книг</a>
             </li>
             {% block menu %}{% endblock %}

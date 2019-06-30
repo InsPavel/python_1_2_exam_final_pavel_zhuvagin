@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Страница пользователя{% endblock %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+    <p>{{ user.first_name }}</p>
+    <p>{{ user.last_name }}</p>
+    <p>{{ user.email }}</p>
+    <h3>Список книг</h3>
+    <div class="row">
+        {% for book in user.user.book.all %}
+            <div class="col-3">
+                <a href="{% url 'webapp:book_detail' book.pk%}"><img src="{{ book.image.url }}" alt="" class="w-75 h-100"></a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
