@@ -111,6 +111,7 @@ class UserDetailView(DetailView):
     template_name = 'user_detail.html'
 
 
+
 def book_download(request, pk):
     book = get_object_or_404(Book, pk=pk)
     file = book.file
