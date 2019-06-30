@@ -27,7 +27,7 @@ class Book(models.Model):
 
 
 class BookShelf(models.Model):
-    user = models.OneToOneField(User, related_name='user',  verbose_name='Пользователь', on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='user_shell',  verbose_name='Пользователь', on_delete=models.CASCADE)
     book = models.ManyToManyField('Book', related_name='book', verbose_name='Книги')
 
     def __str__(self):

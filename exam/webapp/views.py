@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, reverse, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView, TemplateView
 from webapp.models import Author, Book, BookShelf, User
@@ -126,3 +126,19 @@ def soft_delete_author(request, pk):
     author.is_deleted = True
     author.save()
     return redirect('webapp:author_list')
+
+
+def add_book_to_shelf(request):
+    user = request.user
+    book_id = request.POST.get('book_id', None)
+    book = Book.objects.get(pk=book_id)
+    user.user_shell.book.add(book)
+    return JsonResponse({'book_object': "Книга добавлена"})
+
+
+def delete_book_from_shelf(request):
+    user = request.user
+    book_id = request.POST.get('book_id', None)
+    book = Book.objects.get(pk=book_id)
+    user.user_shell.book.remove(book)
+    return JsonResponse({'book_object': "Книга удалена"})

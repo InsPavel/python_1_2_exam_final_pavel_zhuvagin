@@ -9,10 +9,21 @@
     <p>{{ user.email }}</p>
     <h3>Список книг</h3>
     <div class="row">
-        {% for book in user.user.book.all %}
+        {% for book in user.user_shell.book.all %}
             <div class="col-3">
                 <a href="{% url 'webapp:book_detail' book.pk%}"><img src="{{ book.image.url }}" alt="" class="w-75 h-100"></a>
+            <form action="" method="post" onsubmit="return false;">
+                {% csrf_token %}
+                <button data-url="{% url 'webapp:add_book_ajax' %}"
+                        onclick="dataPost({{ book.pk }});"
+                   class="card-link" type="button">Добавить</button>
+                <button data-delete-url ="{% url 'webapp:delete_book_ajax' %}"
+                        onclick="dataDelete({{ book.pk }});" class="card-link">Удалить</button>
+            </form>
             </div>
         {% endfor %}
     </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/book_add.js' %}"></script>
 {% endblock %}
